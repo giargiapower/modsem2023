@@ -1,0 +1,869 @@
+@prefix : <http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame> a owl:Ontology ;
+	owl:imports <http://www.ontologydesignpatterns.org/cp/owl/partof.owl> , <http://www.ontologydesignpatterns.org/cp/owl/place.owl> ;
+	<http://purl.org/dc/elements/1.1/creator> "Gianni Molinari"@en ;
+	<http://purl.org/dc/elements/1.1/description> "a beer ontology that describe beer, their composition, productors and pub in Turin that sell them"@en ;
+	rdfs:label "BeerOntology"@en ;
+	<http://purl.org/vocab/vann/preferredNamespacePrefix> "Beer"@en ;
+	<http://purl.org/dc/elements/1.1/title> "Beer Ontology"@en ;
+	<http://purl.org/vocab/vann/preferredNamespaceUri> "http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame"@en ;
+	<http://purl.org/dc/elements/1.1/date> "16/02/2023"@en .
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
+# http://purl.org/dc/elements/1.1/creator
+
+<http://purl.org/dc/elements/1.1/creator> a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/elements/1.1/date
+
+<http://purl.org/dc/elements/1.1/date> a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/elements/1.1/description
+
+<http://purl.org/dc/elements/1.1/description> a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/elements/1.1/title
+
+<http://purl.org/dc/elements/1.1/title> a owl:AnnotationProperty .
+# 
+# http://purl.org/vocab/vann/preferredNamespacePrefix
+
+<http://purl.org/vocab/vann/preferredNamespacePrefix> a owl:AnnotationProperty .
+# 
+# http://purl.org/vocab/vann/preferredNamespaceUri
+
+<http://purl.org/vocab/vann/preferredNamespaceUri> a owl:AnnotationProperty .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#acquistabile_da
+
+:acquistabile_da a owl:ObjectProperty ;
+	owl:inverseOf :vende ;
+	rdfs:domain :Birre ;
+	rdfs:range :Locali ;
+	rdfs:comment "in quale locale è acquistabile una determinata birra"@it ;
+	rdfs:label "acquistabile_da"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#ha_grado_alcolico
+
+:ha_grado_alcolico a owl:ObjectProperty , owl:FunctionalProperty ;
+	rdfs:domain :Birre ;
+	rdfs:range :Grado_alcolico ;
+	rdfs:comment "quanto grado alcolico ha una birra"@it ;
+	rdfs:label "ha_grado_alcolico"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#ha_indirizzo
+
+:ha_indirizzo a owl:ObjectProperty ;
+	rdfs:subPropertyOf <http://www.ontologydesignpatterns.org/cp/owl/place.owl#hasLocation> ;
+	rdfs:domain :Locali ;
+	rdfs:range :Indirizzo ;
+	rdfs:comment "a che indirizzo si trova il locale"@it ;
+	rdfs:label "ha_indirizzo"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#ha_lievito
+
+:ha_lievito a owl:ObjectProperty ;
+	rdfs:subPropertyOf <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#hasPart> ;
+	rdfs:domain :Birre ;
+	rdfs:range :Lievito ;
+	rdfs:comment "che lievito è usato per la birra"@it ;
+	rdfs:label "ha_lievito"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#ha_luppolo
+
+:ha_luppolo a owl:ObjectProperty ;
+	rdfs:subPropertyOf <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#hasPart> ;
+	rdfs:domain :Birre ;
+	rdfs:range :Luppolo ;
+	rdfs:comment "che luppolo è usato per la birra"@it ;
+	rdfs:label "ha_luppolo"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#ha_malto
+
+:ha_malto a owl:ObjectProperty ;
+	rdfs:subPropertyOf <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#hasPart> ;
+	rdfs:domain :Birre ;
+	rdfs:range :Malto ;
+	rdfs:comment "che malto è usato per la birra"@it ;
+	rdfs:label "ha_malto"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#produce
+
+:produce a owl:ObjectProperty ;
+	owl:inverseOf :è_prodotto ;
+	rdfs:domain :Produttori ;
+	rdfs:range :Birre ;
+	rdfs:comment "che birra produce un produttore"@it ;
+	rdfs:label "produce"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#rifornito_da
+
+:rifornito_da a owl:ObjectProperty ;
+	rdfs:domain :Locali ;
+	rdfs:range :Produttori ;
+	owl:propertyChainAxiom _:genid2 .
+
+_:genid2 a rdf:List ;
+	rdf:first :vende ;
+	rdf:rest _:genid1 .
+
+_:genid1 a rdf:List ;
+	rdf:first :è_prodotto ;
+	rdf:rest rdf:nil .
+
+:rifornito_da rdfs:comment "da quale produttore è rifornito un locale"@it ;
+	rdfs:label "rifornito_da"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#vende
+
+:vende a owl:ObjectProperty ;
+	rdfs:domain :Locali ;
+	rdfs:range :Birre ;
+	rdfs:comment "cosa vende un locale"@it ;
+	rdfs:label "vende"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#è_prodotto
+
+:è_prodotto a owl:ObjectProperty ;
+	rdfs:domain :Birre ;
+	rdfs:range :Produttori ;
+	rdfs:comment "da chi è prodotta una birra"@it ;
+	rdfs:label "è_prodotto"@it .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Data properties
+# #
+# #################################################################
+# 
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Citta
+
+:Citta a owl:DatatypeProperty ;
+	rdfs:domain :Indirizzo ;
+	rdfs:range xsd:string ;
+	rdfs:comment "in quale cittò si trova questo indirizzo"@it ;
+	rdfs:label "citta"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#città_torino
+
+:città_torino a owl:DatatypeProperty ;
+	rdfs:comment "che indirizzo ha un locale della città di torino"@it ;
+	rdfs:label "città_torino"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#costo
+
+:costo a owl:DatatypeProperty .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#ha_valore
+
+:ha_valore a owl:DatatypeProperty ;
+	rdfs:domain :Grado_alcolico ;
+	rdfs:range xsd:float ;
+	rdfs:comment "valore in float del grado alcolico"@it ;
+	rdfs:label "ha_valore"@it .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://purl.obolibrary.org/obo/FOODON_03301619
+
+<http://purl.obolibrary.org/obo/FOODON_03301619> a owl:Class ;
+	owl:equivalentClass :Malto ;
+	rdfs:subClassOf :Ingredienti ;
+	rdfs:comment "SIREN DB annotation: * has quality 'liquid, low viscosity, with no visible particles' ( http://purl.obolibrary.org/obo/FOODON_03430123) * derives from 'germinated or sprouted seed' ( http://purl.obolibrary.org/obo/FOODON_03420102) * formed as a result of 'flavoring, spice or herb added, natural' ( http://purl.obolibrary.org/obo/FOODON_03460229) * formed as a result of 'alcohol fermentation process' ( http://purl.obolibrary.org/obo/FOODON_03460232) * formed as a result of 'carbonated by fermentation' ( http://purl.obolibrary.org/obo/FOODON_03460246) * formed as a result of 'preservation by filtration' ( http://purl.obolibrary.org/obo/FOODON_03470121)"@en ;
+	rdfs:isDefinedBy "https://ontobee.org/ontology/FOODON?iri=http://purl.obolibrary.org/obo/FOODON_03301619"@en ;
+	rdfs:label "FOODON_03301619"@en .
+# 
+# http://purl.obolibrary.org/obo/FOODON_03315756
+
+<http://purl.obolibrary.org/obo/FOODON_03315756> a owl:Class ;
+	owl:equivalentClass :Luppolo ;
+	rdfs:subClassOf :Ingredienti ;
+	rdfs:comment "SIREN DB annotation: * has quality 'liquid, low viscosity, with no visible particles' ( http://purl.obolibrary.org/obo/FOODON_03430123) * derives from 'extract, concentrate or isolate of plant or animal' ( http://purl.obolibrary.org/obo/FOODON_03420228)"@en ;
+	rdfs:isDefinedBy "https://ontobee.org/ontology/FOODON?iri=http://purl.obolibrary.org/obo/FOODON_03315756"@en ;
+	rdfs:label "FOODON_03315756"@en .
+# 
+# http://purl.obolibrary.org/obo/FOODON_03411345
+
+<http://purl.obolibrary.org/obo/FOODON_03411345> a owl:Class ;
+	owl:equivalentClass :Lievito ;
+	rdfs:subClassOf :Ingredienti ;
+	rdfs:comment "Yeasts are eukaryotic micro-organisms classified in the kingdom *Fungi*, with 1,500 species currently described estimated to be only 1% of all fungal species."@en ;
+	rdfs:isDefinedBy "https://ontobee.org/ontology/FOODON?iri=http://purl.obolibrary.org/obo/FOODON_03411345"@en ;
+	rdfs:label "FOODON_03411345"@en .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Ambrato
+
+:Ambrato a owl:Class ;
+	rdfs:subClassOf :Birre ;
+	rdfs:comment "birre dal colore ambrato"@it ;
+	rdfs:label "Ambrato"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Ambrato_intenso
+
+:Ambrato_intenso a owl:Class ;
+	rdfs:subClassOf :Ambrato ;
+	rdfs:comment "birre dal colore ambrato e intenso"@it ;
+	rdfs:label "Ambrato intenso"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Birre
+
+:Birre a owl:Class ;
+	owl:equivalentClass _:genid3 .
+
+_:genid3 a owl:Restriction ;
+	owl:onProperty :ha_grado_alcolico ;
+	owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass :Grado_alcolico .
+
+:Birre rdfs:comment "classe generica delle Birre"@it ;
+	rdfs:label "Birre"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Brillante
+
+:Brillante a owl:Class ;
+	rdfs:subClassOf :Ambrato ;
+	rdfs:comment "birre dal colore ambrato brillante"@it ;
+	rdfs:label "Brillante"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Dorato_chiaro
+
+:Dorato_chiaro a owl:Class ;
+	rdfs:subClassOf :Giallo ;
+	rdfs:comment "birre dal colore giallo dorato chiaro"@it ;
+	rdfs:label "Dorato chiaro"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Dorato_intenso
+
+:Dorato_intenso a owl:Class ;
+	rdfs:subClassOf :Giallo ;
+	rdfs:comment "birre dal colore giallo dorato intenso"@it ;
+	rdfs:label "Dorato intenso"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Giallo
+
+:Giallo a owl:Class ;
+	rdfs:subClassOf :Birre ;
+	rdfs:comment "birre dal colore giallo"@it ;
+	rdfs:label "Giallo"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Grado_alcolico
+
+:Grado_alcolico a owl:Class ;
+	rdfs:comment "grado alcolico di una birra"@it ;
+	rdfs:label "Grado alcolico"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Indirizzo
+
+:Indirizzo a owl:Class ;
+	owl:equivalentClass <https://w3id.org/italia/onto/CLV/Address> ;
+	rdfs:subClassOf <http://www.ontologydesignpatterns.org/cp/owl/place.owl#Place> ;
+	rdfs:comment "indirizzo di locazione dei locali"@it ;
+	rdfs:label "Indirizzo"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Ingredienti
+
+:Ingredienti a owl:Class ;
+	rdfs:comment "ingredienti utilizzati per fare una determinata birra"@it ;
+	rdfs:label "Ingredienti"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Lievito
+
+:Lievito a owl:Class ;
+	rdfs:subClassOf :Ingredienti ;
+	rdfs:comment "lievito usato nel processo di creazione della birra"@it ;
+	rdfs:label "Lievito"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Locali
+
+:Locali a owl:Class ;
+	owl:equivalentClass _:genid4 .
+
+_:genid4 a owl:Class ;
+	owl:oneOf _:genid8 .
+
+_:genid8 a rdf:List ;
+	rdf:first :Birroteca ;
+	rdf:rest _:genid7 .
+
+_:genid7 a rdf:List ;
+	rdf:first :Jumping_Jester_pub ;
+	rdf:rest _:genid6 .
+
+_:genid6 a rdf:List ;
+	rdf:first :Six_Nations ;
+	rdf:rest _:genid5 .
+
+_:genid5 a rdf:List ;
+	rdf:first :St_Martin ;
+	rdf:rest rdf:nil .
+
+:Locali rdfs:comment "pub che vendono determinate birre"@it ;
+	rdfs:label "Locali"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Luppolo
+
+:Luppolo a owl:Class ;
+	rdfs:subClassOf :Ingredienti ;
+	rdfs:comment "luppolo usato nel processo di creazione della birra"@it ;
+	rdfs:label "Luppolo"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Malto
+
+:Malto a owl:Class ;
+	rdfs:subClassOf :Ingredienti ;
+	rdfs:comment "malto usato nel processo di creazione della birra"@it ;
+	rdfs:label "Malto"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Marrone
+
+:Marrone a owl:Class ;
+	rdfs:subClassOf :Birre ;
+	rdfs:comment "birre dal colore marrone"@it ;
+	rdfs:label "Marrone"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Marrone_intenso
+
+:Marrone_intenso a owl:Class ;
+	rdfs:subClassOf :Marrone ;
+	rdfs:comment "birre dal colore marrone intenso"@it ;
+	rdfs:label "Marrone intenso"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Molto_intenso
+
+:Molto_intenso a owl:Class ;
+	rdfs:subClassOf :Marrone ;
+	rdfs:comment "birre dal colore marrone molto intenso"@it ;
+	rdfs:label "Molto intenso"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Nero
+
+:Nero a owl:Class ;
+	rdfs:subClassOf :Birre ;
+	rdfs:comment "birre dal colore nero"@it ;
+	rdfs:label "Nero"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Paglierino
+
+:Paglierino a owl:Class ;
+	rdfs:subClassOf :Giallo ;
+	rdfs:comment "birre dal colore giallo paglierino"@it ;
+	rdfs:label "Paglierino"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Produttori
+
+:Produttori a owl:Class ;
+	rdfs:comment "aziende produttrici di birra"@it ;
+	rdfs:label "Produttori"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Quasi_marrone
+
+:Quasi_marrone a owl:Class ;
+	rdfs:subClassOf :Ambrato ;
+	rdfs:comment "birre ambrate dal colore quasi marrone"@it ;
+	rdfs:label "Quasi marrone"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Sfumature_rossastre
+
+:Sfumature_rossastre a owl:Class ;
+	rdfs:subClassOf :Marrone ;
+	rdfs:comment "birre dal colore marrone con sfumature rossastre"@it ;
+	rdfs:label "Sfumature rossastre"@it .
+# 
+# https://w3id.org/italia/onto/CLV/Address
+
+<https://w3id.org/italia/onto/CLV/Address> a owl:Class ;
+	rdfs:subClassOf <http://www.ontologydesignpatterns.org/cp/owl/place.owl#Place> ;
+	rdfs:isDefinedBy "http://dati.beniculturali.it/lode/extract?url=https://raw.githubusercontent.com/ICCD-MiBACT/ArCo/master/ArCo-release/ontologie/location/location.owl#d4e4320" ;
+	rdfs:label "Address"@en .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Individuals
+# #
+# #################################################################
+# 
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#AURA
+
+:AURA a owl:NamedIndividual ;
+	rdfs:comment "produttore di birra"@it ;
+	rdfs:label "AURA"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#American_Pale_Ale
+
+:American_Pale_Ale a owl:NamedIndividual , :Dorato_intenso ;
+	:ha_grado_alcolico :Grado_american_pale_ale ;
+	:ha_lievito :Chico_ale ;
+	:ha_luppolo :Cascade ;
+	:ha_malto :Medium_Crystal ;
+	:è_prodotto :ISOLA ;
+	rdfs:comment "birra dorata intensa"@it ;
+	rdfs:label "American_Pale_Ale"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Birroteca
+
+:Birroteca a owl:NamedIndividual ;
+	:ha_indirizzo :_11 ;
+	:vende :Foreign_Stout , :Pale_lager , :Weissbier ;
+	rdfs:comment "locale a torino"@it ;
+	rdfs:label "Birroteca"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Black_malt
+
+:Black_malt a owl:NamedIndividual ;
+	rdfs:comment "malto specifico"@it ;
+	rdfs:label "Black_malt"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#British_pale_malt
+
+:British_pale_malt a owl:NamedIndividual ;
+	rdfs:comment "malto specifico"@it ;
+	rdfs:label "British_pale_malt"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Brown_Ale
+
+:Brown_Ale a owl:NamedIndividual , :Marrone_intenso ;
+	:ha_grado_alcolico :Grado_brown_ale ;
+	:ha_lievito :Danstar_Nottingham ;
+	:ha_luppolo :Fuggles ;
+	:ha_malto :English_pale ;
+	rdfs:comment "birra marrone intenso"@it ;
+	rdfs:label "Brown_Ale"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#CANEDIGUERRA
+
+:CANEDIGUERRA a owl:NamedIndividual ;
+	rdfs:comment "produttore di birra"@it ;
+	rdfs:label "CANEDIGUERRA"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#COOPERS
+
+:COOPERS a owl:NamedIndividual ;
+	rdfs:comment "produttore di birra"@it ;
+	rdfs:label "COOPERS"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Cascade
+
+:Cascade a owl:NamedIndividual ;
+	rdfs:comment "luppolo specifico"@it ;
+	rdfs:label "Cascade"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Chico_ale
+
+:Chico_ale a owl:NamedIndividual ;
+	rdfs:comment "Lievito specifico"@it ;
+	rdfs:label "Chico_ale"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Crystal_Extra_Dark
+
+:Crystal_Extra_Dark a owl:NamedIndividual ;
+	rdfs:comment "malto specifico"@it ;
+	rdfs:label "Crystal_Extra_Dark"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Danstar_Nottingham
+
+:Danstar_Nottingham a owl:NamedIndividual ;
+	rdfs:comment "lievito specifico"@it ;
+	rdfs:label "Danstar_Nottingham"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Doppelbock
+
+:Doppelbock a owl:NamedIndividual , :Sfumature_rossastre ;
+	:ha_grado_alcolico :Grado_Doppelbock ;
+	:ha_lievito :Wyeast_2124 ;
+	:ha_luppolo :Hallertauer ;
+	:ha_malto :Pilsner_malt ;
+	:è_prodotto :FORST ;
+	rdfs:comment "birra con sfumature rossastre"@it ;
+	rdfs:label "Doppelbock"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Double_IPA
+
+:Double_IPA a owl:NamedIndividual , :Ambrato_intenso ;
+	:ha_grado_alcolico :Grado_Double_IPA ;
+	:ha_lievito :White_Labs_California_Ale ;
+	:ha_luppolo :Cascade ;
+	:ha_malto :Golden_Promise ;
+	:è_prodotto :CANEDIGUERRA ;
+	rdfs:comment "birra ambrata intensa"@it ;
+	rdfs:label "Double_IPA"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#English_bitter
+
+:English_bitter a owl:NamedIndividual , :Brillante ;
+	:ha_grado_alcolico :Grado_English_bitter ;
+	:ha_lievito :Wyeast_1968 ;
+	:ha_luppolo :Fuggles ;
+	:ha_malto :British_pale_malt ;
+	:è_prodotto :COOPERS ;
+	rdfs:comment "birra brillante"@it ;
+	rdfs:label "English_bitter"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#English_pale
+
+:English_pale a owl:NamedIndividual ;
+	rdfs:comment "malto specifico"@it ;
+	rdfs:label "English_pale"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#FORST
+
+:FORST a owl:NamedIndividual ;
+	rdfs:comment "produttore di birra"@it ;
+	rdfs:label "FORST"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Foreign_Stout
+
+:Foreign_Stout a owl:NamedIndividual , :Molto_intenso ;
+	:ha_grado_alcolico :Grado_Foreign_stout ;
+	:ha_lievito :WLP004 ;
+	:ha_luppolo :Fuggles ;
+	:ha_malto :Black_malt ;
+	:è_prodotto :GUINNES ;
+	rdfs:comment "birra molto intensa"@it ;
+	rdfs:label "Foreign_Stout"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Fuggles
+
+:Fuggles a owl:NamedIndividual ;
+	rdfs:comment "luppolo specifico"@it ;
+	rdfs:label "Fuggles"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#GUINNES
+
+:GUINNES a owl:NamedIndividual ;
+	rdfs:comment "produttore di birra"@it ;
+	rdfs:label "GUINNES"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Golden_Promise
+
+:Golden_Promise a owl:NamedIndividual ;
+	rdfs:comment "malto specifico"@it ;
+	rdfs:label "Golden_Promise"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Grado_Doppelbock
+
+:Grado_Doppelbock a owl:NamedIndividual ;
+	:ha_valore "5.6"^^xsd:float .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Grado_Double_IPA
+
+:Grado_Double_IPA a owl:NamedIndividual ;
+	:ha_valore "7.6"^^xsd:float .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Grado_English_bitter
+
+:Grado_English_bitter a owl:NamedIndividual ;
+	:ha_valore "4.2"^^xsd:float .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Grado_Foreign_stout
+
+:Grado_Foreign_stout a owl:NamedIndividual ;
+	:ha_valore "7.5"^^xsd:float .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Grado_Stout
+
+:Grado_Stout a owl:NamedIndividual ;
+	:ha_valore "4.5"^^xsd:float .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Grado_Warsteiner_fresh
+
+:Grado_Warsteiner_fresh a owl:NamedIndividual ;
+	:ha_valore "0.0"^^xsd:float .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Grado_american_pale_ale
+
+:Grado_american_pale_ale a owl:NamedIndividual ;
+	:ha_valore "6.0"^^xsd:float ;
+	rdfs:comment "grado alcolico di una birra"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Grado_brown_ale
+
+:Grado_brown_ale a owl:NamedIndividual ;
+	:ha_valore "5.0"^^xsd:float .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Grado_pale_lager
+
+:Grado_pale_lager a owl:NamedIndividual ;
+	:ha_valore "5.0"^^xsd:float .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#HEINEKEN
+
+:HEINEKEN a owl:NamedIndividual ;
+	rdfs:comment "produttore di birra"@it ;
+	rdfs:label "HEINEKEN"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Hallertauer
+
+:Hallertauer a owl:NamedIndividual ;
+	rdfs:comment "luppolo specifico"@it ;
+	rdfs:label "Hallertauer"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#ICHNUSA
+
+:ICHNUSA a owl:NamedIndividual ;
+	rdfs:comment "produttore di birra"@it ;
+	rdfs:label "ICHNUSA"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#ISOLA
+
+:ISOLA a owl:NamedIndividual ;
+	rdfs:comment "produttore di birra"@it ;
+	rdfs:label "ISOLA"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Imperial_Stout
+
+:Imperial_Stout a owl:NamedIndividual , :Nero ;
+	:è_prodotto :GUINNES ;
+	rdfs:comment "birra nera"@it ;
+	rdfs:label "Imperial_Stout"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Irish_Ale_Yeast
+
+:Irish_Ale_Yeast a owl:NamedIndividual ;
+	rdfs:comment "lievito specifico"@it ;
+	rdfs:label "Irish_Ale_Yeast"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Jumping_Jester_pub
+
+:Jumping_Jester_pub a owl:NamedIndividual , :Locali ;
+	:ha_indirizzo :_2 ;
+	rdfs:comment "locale a torino"@it ;
+	rdfs:label "Jumping_Jester_pub"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Lager_Scura
+
+:Lager_Scura a owl:NamedIndividual , :Quasi_marrone ;
+	rdfs:comment "birra quasi marrone"@it ;
+	rdfs:label "Lager_Scura"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#MISTER_B_BREWERY
+
+:MISTER_B_BREWERY a owl:NamedIndividual ;
+	rdfs:comment "produttore di birra"@it ;
+	rdfs:label "MISTER_B_BREWERY"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Maibock
+
+:Maibock a owl:NamedIndividual , :Paglierino ;
+	rdfs:comment "birra dal colore paglierino"@it ;
+	rdfs:label "Maibock"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Medium_Crystal
+
+:Medium_Crystal a owl:NamedIndividual ;
+	rdfs:comment "malto specifico"@it ;
+	rdfs:label "Medium_Crystal"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Pale_lager
+
+:Pale_lager a owl:NamedIndividual , :Dorato_chiaro ;
+	:ha_grado_alcolico :Grado_pale_lager ;
+	:ha_lievito :Saccharomyces_pastorianus ;
+	:ha_luppolo :Saaz ;
+	:ha_malto :Pilsen_Malt ;
+	:è_prodotto :AURA , :HEINEKEN , :ICHNUSA ;
+	rdfs:comment "birra dal colore dorato chiaro"@it ;
+	rdfs:label "Pale_lager"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Pilsen_Malt
+
+:Pilsen_Malt a owl:NamedIndividual ;
+	rdfs:comment "malto specifico"@it ;
+	rdfs:label "Pilsen_Malt"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Pilsner
+
+:Pilsner a owl:NamedIndividual , :Paglierino ;
+	rdfs:comment "birra dal colore paglierino"@it ;
+	rdfs:label "Pilsner"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Pilsner_malt
+
+:Pilsner_malt a owl:NamedIndividual ;
+	rdfs:comment "malto specifico"@it ;
+	rdfs:label "Pilsner_malt"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Saaz
+
+:Saaz a owl:NamedIndividual ;
+	rdfs:comment "luppolo specifico"@it ;
+	rdfs:label "Saaz"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Saccharomyces_pastorianus
+
+:Saccharomyces_pastorianus a owl:NamedIndividual ;
+	rdfs:comment "lievito specifico"@it ;
+	rdfs:label "Saccharomyces_pastorianus"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Saison
+
+:Saison a owl:NamedIndividual , :Brillante ;
+	:è_prodotto :CANEDIGUERRA ;
+	rdfs:comment "birra dal colore brillante"@it ;
+	rdfs:label "Saison"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Six_Nations
+
+:Six_Nations a owl:NamedIndividual ;
+	:ha_indirizzo :_28 ;
+	:vende :American_Pale_Ale , :Lager_Scura , :Pale_lager , :Stout ;
+	rdfs:comment "locale a torino"@it ;
+	rdfs:label "Six_Nations"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#St_Martin
+
+:St_Martin a owl:NamedIndividual ;
+	:ha_indirizzo <http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Corso_S._Martino,_0/b> ;
+	:vende :Foreign_Stout , :Pale_lager ;
+	rdfs:comment "locale a torino"@it ;
+	rdfs:label "St_Martin"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Stout
+
+:Stout a owl:NamedIndividual , :Sfumature_rossastre ;
+	:ha_grado_alcolico :Grado_Stout ;
+	:ha_lievito :Irish_Ale_Yeast ;
+	:ha_luppolo :Fuggles ;
+	:ha_malto :Crystal_Extra_Dark ;
+	rdfs:comment "birra dalle sfumature rossastre"@it ;
+	rdfs:label "Stout"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#THORNBRIDGE
+
+:THORNBRIDGE a owl:NamedIndividual ;
+	rdfs:comment "produttore di birra"@it ;
+	rdfs:label "THORNBRIDGE"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#WLP004
+
+:WLP004 a owl:NamedIndividual ;
+	rdfs:comment "genere di lievito"@it ;
+	rdfs:label "WLP004"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Warsteiner_fresh
+
+:Warsteiner_fresh a owl:NamedIndividual , :Paglierino ;
+	:ha_grado_alcolico :Grado_Warsteiner_fresh ;
+	:ha_lievito :Saccharomyces_pastorianus ;
+	:ha_luppolo :Hallertauer ;
+	:ha_malto :Pilsen_Malt ;
+	rdfs:comment "birra bionda"@it ;
+	rdfs:label "Warsteiner_fresh"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Weissbier
+
+:Weissbier a owl:NamedIndividual , :Dorato_chiaro ;
+	rdfs:comment "birra bionda"@it ;
+	rdfs:label "Weissbier"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#White_Labs_California_Ale
+
+:White_Labs_California_Ale a owl:NamedIndividual ;
+	rdfs:comment "genere di lievito"@it ;
+	rdfs:label "White_Labs_California_Ale"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Witbier
+
+:Witbier a owl:NamedIndividual , :Paglierino ;
+	rdfs:comment "birra bionda"@it ;
+	rdfs:label "Witbier"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Wyeast_1968
+
+:Wyeast_1968 a owl:NamedIndividual ;
+	rdfs:comment "genere di lievito"@it ;
+	rdfs:label "Wyeast_1968"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Wyeast_2124
+
+:Wyeast_2124 a owl:NamedIndividual ;
+	rdfs:comment "genere di lievito"@it ;
+	rdfs:label "Wyeast_2124"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#_11
+
+:_11 a owl:NamedIndividual ;
+	:Citta "Torino" ;
+	rdfs:comment "Via Cesana, 11, 10139 Torino TO"@it ;
+	rdfs:label "via_cesana_11"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#_2
+
+:_2 a owl:NamedIndividual ;
+	rdfs:comment "Via Giuseppe Mazzini, 2, 10123 Torino TO"@it ;
+	rdfs:label "via_giuseppe_mazzini_2"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#_28
+
+:_28 a owl:NamedIndividual ;
+	:Citta "Torino" ;
+	rdfs:comment "Corso Vittorio Emanuele II, 28, 10123 Torino TO"@it ;
+	rdfs:label "Corso_Vittorio_Emanuele_II_28"@it .
+# 
+# http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Corso_S._Martino,_0/b
+
+<http://www.semanticweb.org/gianni_molinari/ontologies/2023/ProgettoEsame#Corso_S._Martino,_0/b> a owl:NamedIndividual ;
+	:Citta "Torino" ;
+	rdfs:comment "indirizzo locale a torino"@it ;
+	rdfs:label "Corso_S._Martino,_0/b"@it .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    General axioms
+# #
+# #################################################################
+# 
+# 
+
+_:genid9 a owl:AllDifferent ;
+	owl:distinctMembers _:genid12 .
+
+_:genid12 a rdf:List ;
+	rdf:first :Birroteca ;
+	rdf:rest _:genid11 .
+
+_:genid11 a rdf:List ;
+	rdf:first :Six_Nations ;
+	rdf:rest _:genid10 .
+
+_:genid10 a rdf:List ;
+	rdf:first :St_Martin ;
+	rdf:rest rdf:nil .
+# 
+# Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi
